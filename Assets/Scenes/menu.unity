@@ -5571,7 +5571,6 @@ MonoBehaviour:
   idle: {fileID: 375096582}
   fast: {fileID: 551042441}
   enemies: []
-  hearts: []
   deathColor: {r: 0, g: 0, b: 0, a: 0}
   winColor: {r: 0, g: 0, b: 0, a: 0}
   laser: {fileID: 8300000, guid: 2e1ea83ef9ed7e5418cf9b241ca9da87, type: 3}
@@ -5579,7 +5578,6 @@ MonoBehaviour:
   slow: {fileID: 8300000, guid: 458c6caa358ec3c41bf8a1caadc22954, type: 3}
   heartSound: {fileID: 0}
   isMenu: 1
-  lives: 0
   levelText: {fileID: 0}
   ShotDone: 0
 --- !u!82 &1388744195

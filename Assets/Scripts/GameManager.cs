@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
     public GameObject idle;
     public GameObject fast;
     public List<GameObject> enemies;
-    public GameObject[] hearts;
     public Color deathColor;
     public Color winColor;
     public AudioClip laser;
@@ -28,7 +27,6 @@ public class GameManager : MonoBehaviour
     public AudioClip slow;
     public AudioClip heartSound;
     public bool isMenu;
-    public int lives;
     public TextMeshProUGUI levelText;
 
     private ActionTimer timer;
@@ -246,19 +244,6 @@ public class GameManager : MonoBehaviour
         plRb.velocity = plRb.velocity.normalized * speed;
         playerState = "SLOW";
 
-        if (lives < 4)
-        {
-            lives++;
-            for (int i = 0; i < hearts.Length; i++)
-            {
-                if (!hearts[i].activeSelf)
-                {
-                   hearts[i].SetActive(true);
-                    break;
-                }
-            }
-        }
-
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         for (int i = 0; i < enemies.Length; i++)
         {
@@ -390,39 +375,14 @@ public class GameManager : MonoBehaviour
         else if(mode == "RESTART") {
 
             timer.stopTimer();
-            lives--;
-
-            for(int i = 0; i < hearts.Length; i++)
-            {
-                if(hearts[(hearts.Length-1) - i].activeSelf)
-                {
-                    hearts[(hearts.Length-1) - i].SetActive(false);
-                    break;
-                }
-
-            }
             
         }
         else if(mode == "DEATH") {
 
             winTransition.SetTrigger("goReturn");
-            lives--;
-            for (int i = 0; i < hearts.Length; i++)
-            {
-                if (hearts[(hearts.Length - 1) - i].activeSelf)
-                {
-                    hearts[(hearts.Length - 1) - i].SetActive(false);
-                    break;
-                }
-            }
         }
 
         //if lives are finished return to menu
-        if (lives == 0)
-        {
-            SceneManager.LoadScene("menu");
-            return;
-        }
 
         if(mode == "START")
         {
