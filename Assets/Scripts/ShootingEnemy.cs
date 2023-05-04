@@ -7,7 +7,6 @@ using UnityEngine;
 public class ShootingEnemy : MonoBehaviour
 {
     public GameObject bullet;
-    public float bulletSpeed;
     public float burstTime;
     public Transform shooterPointTop;
     public Transform shooterPointDown;
@@ -42,17 +41,12 @@ public class ShootingEnemy : MonoBehaviour
         if (death.getSlow())
             return;
 
-        GameObject bullTop = new GameObject();
-        GameObject bullDown = new GameObject();
+        bullet.transform.position = gameObject.transform.position;
+        GameObject bull1 = Instantiate(bullet);
+        bull1.GetComponent<Rigidbody2D>().velocity = (((Vector2)shooterPointTop.position) - (Vector2)gameObject.transform.position).normalized * bull1.GetComponent<speedModifier>().standardSpeed;
 
-        bullTop = Instantiate(bullet);
-        bullDown = Instantiate(bullet);
-        bullTop.transform.position = gameObject.transform.position;
-        bullTop.GetComponent<speedModifier>().setStandardSpeeed(bulletSpeed);       
-        bullTop.GetComponent<Rigidbody2D>().velocity = (((Vector2) shooterPointTop.position) - (Vector2)gameObject.transform.position).normalized * bulletSpeed;
-        bullDown.transform.position = gameObject.transform.position;
-        bullDown.GetComponent<speedModifier>().setStandardSpeeed(bulletSpeed);
-        bullDown.GetComponent<Rigidbody2D>().velocity = (((Vector2)shooterPointDown.position) - (Vector2)gameObject.transform.position).normalized * bulletSpeed;
+        GameObject bull2 = Instantiate(bullet);
+        bull2.GetComponent<Rigidbody2D>().velocity = (((Vector2)shooterPointDown.position) - (Vector2)gameObject.transform.position).normalized * bull2.GetComponent<speedModifier>().standardSpeed;
 
         audio.PlayOneShot(shot,0.6f);
     }

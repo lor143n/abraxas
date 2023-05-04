@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerDeathDetection : MonoBehaviour
 {
 
-    public GameManager gameManager;
+    private GameManager gameManager;
 
     private void Start()
     {

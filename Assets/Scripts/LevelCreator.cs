@@ -77,10 +77,10 @@ public class LevelCreator : MonoBehaviour
 
             if (yesHeart < 0.4)
             {
-                //int heartIndex = normalCount + shellCount + shooterCount;Random.Range(heartIndex, enemyPositions.Length)
-                //heart.transform.position = enemyPositions[Random.Range(heartIndex, enemyPositions.Length)].transform.position;
-                GameObject he = Instantiate(heart);
-                he.transform.position = enemyPositions[0].transform.position;
+                int heartIndex = normalCount + shellCount + shooterCount;
+                Random.Range(heartIndex, enemyPositions.Length);
+                heart.transform.position = enemyPositions[Random.Range(heartIndex, enemyPositions.Length)].transform.position;
+                GameObject aus = Instantiate(heart);
             }
         }
     }
@@ -105,7 +105,7 @@ public class LevelCreator : MonoBehaviour
 
     public void addDifficulty()
     {
-        if (difficulty > 12)
+        if (difficulty > 15)
         {
             return;
         }

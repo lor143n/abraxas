@@ -6,7 +6,7 @@ public class speedModifier : MonoBehaviour
 {
     
     private Rigidbody2D rb;
-    private float standardSpeed;
+    public float standardSpeed;
 
     private void Start()
     {

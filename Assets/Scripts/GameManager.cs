@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
     private Animator winTransition;
     private Image spriteTransition;
     private int levelCounter;
+    private bool isNoMouseRange;
 
 
     //INIZIALIZZAZIONE DELLE VARIABILI
@@ -88,6 +89,12 @@ public class GameManager : MonoBehaviour
 
     private void InputManager()
     {
+
+        if(isNoMouseRange)
+        {
+            return;
+        }
+
         //Move and attack
         if (Input.GetMouseButtonDown(0) && (playerState == "SLOW" || playerState == "IDLE"))
         {
@@ -403,6 +410,11 @@ public class GameManager : MonoBehaviour
     public void setState(string mode)
     {
         this.playerState = mode;
+    }
+
+    public void setIsNoMouseRange(bool value)
+    {
+        this.isNoMouseRange = value;
     }
 
 
