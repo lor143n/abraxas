@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class HomeButton : MonoBehaviour
 {
-    public Button myButton;
+    private Button myButton;
 
     void Start()
     {
@@ -16,6 +16,8 @@ public class HomeButton : MonoBehaviour
 
     void TaskOnClick()
     {
+        if(Time.timeScale == 0)
+            Time.timeScale = 1;
         SceneManager.LoadScene("menu");
     }
 }

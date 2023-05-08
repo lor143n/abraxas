@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     public AudioClip heartSound;
     public bool isMenu;
     public TextMeshProUGUI levelText;
+    public Texture2D cursorTex;
 
     private ActionTimer timer;
     private Transform player;
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
     private Image spriteTransition;
     private int levelCounter;
     private bool isNoMouseRange;
+    private bool isPaused;
 
 
     //INIZIALIZZAZIONE DELLE VARIABILI
@@ -55,6 +57,7 @@ public class GameManager : MonoBehaviour
         winTransition = GameObject.Find("TransitionManager").GetComponent<Animator>();
         spriteTransition = winTransition.gameObject.GetComponent<Image>();
         audio = GetComponent<AudioSource>();
+        isPaused = false;
 
         if (!isMenu)
         {
@@ -74,6 +77,7 @@ public class GameManager : MonoBehaviour
 
         this.levelCounter = 0;
 
+        Cursor.SetCursor(cursorTex, new Vector2(256,256), CursorMode.Auto);
 
         Initialize("START");
     }
@@ -90,7 +94,7 @@ public class GameManager : MonoBehaviour
     private void InputManager()
     {
 
-        if(isNoMouseRange)
+        if(isNoMouseRange || isPaused)
         {
             return;
         }
@@ -185,8 +189,13 @@ public class GameManager : MonoBehaviour
 
 
         //Restart level
-        if (Input.GetKeyDown(KeyCode.R) && this.playerState != "DEATH" && !this.isMenu)
-            Initialize("RESTART");
+        if (Input.GetKeyDown(KeyCode.R) && this.playerState != "DEATH")
+        {
+            if(this.isMenu)
+                Initialize("MENU");
+            else
+                Initialize("RESTART");
+        }
 
     }
 
@@ -344,7 +353,10 @@ public class GameManager : MonoBehaviour
 
         //if menu mode stop
         if (mode == "MENU")
+        {
+            player.position = new Vector2(0, -4f);
             return;
+        }
 
         endButton.SetActive(false);
         player.position = Vector2.zero;
@@ -415,6 +427,11 @@ public class GameManager : MonoBehaviour
     public void setIsNoMouseRange(bool value)
     {
         this.isNoMouseRange = value;
+    }
+
+    public void setIsPaused(bool value)
+    {
+        this.isPaused = value;
     }
 
 

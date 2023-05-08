@@ -5579,6 +5579,7 @@ MonoBehaviour:
   heartSound: {fileID: 0}
   isMenu: 1
   levelText: {fileID: 0}
+  cursorTex: {fileID: 0}
   ShotDone: 0
 --- !u!82 &1388744195
 AudioSource:
@@ -6313,7 +6314,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1577715992}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
