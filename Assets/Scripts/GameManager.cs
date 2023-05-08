@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     public AudioClip heartSound;
     public bool isMenu;
     public TextMeshProUGUI levelText;
-    public Texture2D cursorTex;
+    public Image cursorTex;
 
     private ActionTimer timer;
     private Transform player;
@@ -71,14 +71,13 @@ public class GameManager : MonoBehaviour
     {
         if (isMenu)
         {
+            Cursor.visible = false;
             Initialize("MENU");
             return;
         }
 
         this.levelCounter = 0;
-
-        Cursor.SetCursor(cursorTex, new Vector2(256,256), CursorMode.Auto);
-
+        Cursor.visible = false;
         Initialize("START");
     }
 
@@ -89,6 +88,9 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         InputManager();
+
+
+        cursorTex.transform.position = Input.mousePosition;
     }
 
     private void InputManager()
